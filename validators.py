@@ -26,9 +26,9 @@ def _check_postalcode(value, postalcodes):
 def input_bounded_integer(prompt, description, minimum, maximum):
     while True:
         try:
-            input_value = int(input(f"{prompt}{description}! (Enter \'q\' to quit): "))
-            if (not isinstance(input_value, int)) and (input_value.upper() == "Q"):
-                    return "Good bye!"
+            input_value = input(f"{prompt}{description}! (Enter \'q\' to quit): ")
+            if input_value.upper() == "Q":
+                return "Good bye!"
             else:
                 return _check_bounded_integer(input_value, description, minimum, maximum)
 
@@ -37,10 +37,12 @@ def input_bounded_integer(prompt, description, minimum, maximum):
 
 
 def _check_bounded_integer(value, description, minimum, maximum):
-    if not isinstance(value, int):
+    try:
+        integer_value=int(value)
+    except ValueError:
         raise ValueError(f" Your input {value} for {description} was not numerical!")
 
-    if not minimum <= value <= maximum:
+    if not minimum <= integer_value <= maximum:
         raise ValueError(f"Your input {value} for {description} is not between  {minimum} and {maximum}!")
 
     return value
