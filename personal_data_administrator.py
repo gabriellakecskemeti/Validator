@@ -22,13 +22,13 @@ while True:
                                           "code (Enter 'q' to quit): ", 1010, 1020, 1030, 1040, 1050))
                 break
             case "QUIT" | "Q":
-                print("Good bye!")
+
                 break
             case _:
                 print("Not valid option! Please try it again!")
 
 
 
-
+print("Thank you for using the Validator!")
 
 

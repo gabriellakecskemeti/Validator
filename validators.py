@@ -3,7 +3,7 @@ def input_postal_code(prompt, *postalcodes):
     while True:
         number_char = input(prompt)
         if number_char.upper() == "Q":
-            return "Good bye!"
+            return
         try:
             return _check_postalcode(number_char, postalcodes)
         except ValueError as error:
@@ -28,7 +28,7 @@ def input_bounded_integer(prompt, description, minimum, maximum):
         try:
             input_value = input(f"{prompt}{description}! (Enter \'q\' to quit): ")
             if input_value.upper() == "Q":
-                return "Good bye!"
+                return
             else:
                 return _check_bounded_integer(input_value, description, minimum, maximum)
 
