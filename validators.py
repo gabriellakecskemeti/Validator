@@ -102,6 +102,7 @@ def dict_to_csv(mydict, myfile):
     :return:
     """
     answer = ""
+    a_w_parameter = "w"
 
     while answer.upper() != "Q":
         try:
@@ -111,13 +112,13 @@ def dict_to_csv(mydict, myfile):
                 a_w_parameter = "a"
 
             with open(myfile, a_w_parameter, newline='') as csvfile:
+            #with open(myfile, a_w_parameter, newline='', encoding="UTF-8") as csvfile:
                 writer = csv.writer(csvfile, delimiter=';', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
-                #the writer method works only right for special characters if i take off the utf-8 parameter.
+                # the writer method works only right for special characters if i take off the utf-8 parameter.
 
-                #writer = csv.DictWriter(csvfile, fieldnames=mydict.keys())
+                # writer = csv.DictWriter(csvfile, fieldnames=mydict.keys())
                 if a_w_parameter == "w":
                     writer.writerow(mydict.keys())
-
 
                 new_row = list()
                 for i in mydict.keys():
