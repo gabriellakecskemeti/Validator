@@ -50,13 +50,26 @@ class CsvWriter:
         """
         It reads a csv file.
         The file must have the structure of Class Person.
-        :return: Person type object
+        :return: a list of Person type objects
         """
-        with open('people.csv', 'r', newline='') as csvfile:   #, encoding="UTF-8"
-            reader = csv.reader(csvfile, delimiter=";", quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
+        personlist = []
+        try:
 
-            for row in reader:  # row contains the data a list, e.g. [“Georg”, “Mansky-Kummert”, 46.0, ... ]
-                for index in range(len(row)):
-                    if isinstance(row[index], float):  # if the value is a float, we convert it to an integer
-                        row[index] = int(row[index])
-                print(row)
+            with open(self.filename, 'r', newline='') as csvfile:  # , encoding="UTF-8"
+                reader = csv.reader(csvfile, delimiter=";", quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
+                n = 0  # counter for the rows, to know which row is the header'
+
+                for row in reader:  # row contains the data a list, e.g. [“Georg”, “Mansky-Kummert”, 46.0, ... ]
+                    for index in range(len(row)):
+                        if isinstance(row[index], float):  # if the value is a float, we convert it to an integer
+                            row[index] = int(row[index])
+                    if n > 0:
+                        personlist.append(Person.Person(row[0], row[1], row[2], row[3], row[4], row[5]))
+
+                    print(row)
+                    n += 1
+
+        except PermissionError:
+            print("\ncsv file can not be opened, please contact the system administrator!")
+
+        return personlist
