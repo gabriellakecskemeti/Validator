@@ -46,10 +46,11 @@ while True:
 #print(person)
 
 
-csv1 = CsvWriter("Obj_people.csv")
+csv1 = CsvWriter("people.csv")
 
 csv1.write(p1)
-
-
 print(p1)
 print("Thank you for using the Validator!")
+
+print("Reading.....!")
+csv1.read()

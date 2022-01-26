@@ -5,7 +5,6 @@ import Person
 
 
 class CsvWriter:
-    # filename="Obj_people.csv"
 
     def __init__(self, filename):
         self.filename = filename
@@ -46,3 +45,18 @@ class CsvWriter:
                           " \nPlease contact the system administrator!")
                     answer = "Q"
         return
+
+    def read(self) -> Person:
+        """
+        It reads a csv file.
+        The file must have the structure of Class Person.
+        :return: Person type object
+        """
+        with open('people.csv', 'r', newline='') as csvfile:   #, encoding="UTF-8"
+            reader = csv.reader(csvfile, delimiter=";", quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
+
+            for row in reader:  # row contains the data a list, e.g. [“Georg”, “Mansky-Kummert”, 46.0, ... ]
+                for index in range(len(row)):
+                    if isinstance(row[index], float):  # if the value is a float, we convert it to an integer
+                        row[index] = int(row[index])
+                print(row)
