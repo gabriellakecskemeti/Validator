@@ -1,6 +1,11 @@
+from Person import Person
+from CsvWriter import CsvWriter
+#import CsvWriter
 import validators
 
-person = {"Name": None, "Address": None, "Postal": None, "Day": None, "Month": None, "Year": None}
+p1 = Person(None, None, None, None, None, None)
+# person = {"Name": P1.name, "Address": P1.address, "Postal": P1.postal, "Day": P1.day, "Month": P1.month,
+#          "Year": P1.year}
 
 while True:
     selection = input(
@@ -8,27 +13,43 @@ while True:
 
     match selection:
         case "NAME" | "N":
-            person["Name"] = validators.input_string("Please Enter Name, (Enter 'q' to quit): ")
+            # person["Name"] = validators.input_string("Please Enter Name, (Enter 'q' to quit): ")
+            p1.name = validators.input_string("Please Enter Name, (Enter 'q' to quit): ")
         case "ADDRESS" | "A":
-            person["Address"] =validators.input_string("Please Enter your Address, (Enter 'q' to quit): ")
+            # person["Address"] = validators.input_string("Please Enter your Address, (Enter 'q' to quit): ")
+            p1.address = validators.input_string("Please Enter your Address, (Enter 'q' to quit): ")
         case "POSTAL CODE" | "POSTAL" | "P":
-            person["Postal"] = validators.input_postal_code("Please enter your postal "
-                                                                  "code (Enter 'q' to quit): ", 1010, 1020, 1030, 1040,
-                                                                  1050)
+            # person["Postal"] = validators.input_postal_code("Please enter your postal "
+            #                                                "code (Enter 'q' to quit): ", 1010, 1020, 1030, 1040,
+            #                                                1050)
+            p1.postal = validators.input_postal_code("Please enter your postal "
+                                                     "code (Enter 'q' to quit): ", 1010, 1020, 1030, 1040,
+                                                     1050)
         case "DAY OF BIRTH" | "DAY" | "D":
-            person["Day"] = validators.input_bounded_integer("Please Enter ", "Day of birth", 1, 31)
+            # person["Day"] = validators.input_bounded_integer("Please Enter ", "Day of birth", 1, 31)
+            p1.day = validators.input_bounded_integer("Please Enter ", "Day of birth", 1, 31)
         case "MONTH OF BIRTH" | "MONTH" | "M":
-            person["Month"] = validators.input_bounded_integer("Please Enter ", "Month of birth", 1, 12)
+            # person["Month"] = validators.input_bounded_integer("Please Enter ", "Month of birth", 1, 12)
+            p1.month = validators.input_bounded_integer("Please Enter ", "Month of birth", 1, 12)
         case "YEAR OF BIRTH" | "YEAR" | "Y":
-            person["Year"] = validators.input_bounded_integer("Please Enter ", "Year of birth", 1850, 2022)
-
+            # person["Year"] = validators.input_bounded_integer("Please Enter ", "Year of birth", 1850, 2022)
+            p1.year = validators.input_bounded_integer("Please Enter ", "Year of birth", 1850, 2022)
         case "QUIT" | "Q":
             break
         case _:
             print("Not valid option! Please try it again!")
 
-#validators.dict_to_csv(person, "c:people.csv")
-validators.dict_to_csv(person, "people.csv")
+#methode using dictionary have been deleted
+#person = {"Name": p1.name, "Address": p1.address, "Postal": p1.postal, "Day": p1.day, "Month": p1.month,
+#          "Year": p1.year}
+#validators.dict_to_csv(person, "people.csv")
+#print(person)
 
-print(person)
+
+csv1 = CsvWriter("Obj_people.csv")
+
+csv1.write(p1)
+
+
+print(p1)
 print("Thank you for using the Validator!")

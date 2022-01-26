@@ -94,13 +94,14 @@ def input_string(prompt):
     return input_value
 
 
+"""
 def dict_to_csv(mydict, myfile):
-    """
-    method to write a dictionary to a csv file
-    :param mydict: the dictionary
-    :param myfile: the path and file name
-    :return:
-    """
+    
+    #method to write a dictionary to a csv file
+    #:param mydict: the dictionary
+    #:param myfile: the path and file name
+    #:return:
+    
     answer = ""
     a_w_parameter = "w"
 
@@ -117,6 +118,7 @@ def dict_to_csv(mydict, myfile):
                 # the writer method works only right for special characters if i take off the utf-8 parameter.
 
                 # writer = csv.DictWriter(csvfile, fieldnames=mydict.keys())
+
                 if a_w_parameter == "w":
                     writer.writerow(mydict.keys())
 
@@ -134,3 +136,4 @@ def dict_to_csv(mydict, myfile):
                       " \nPlease contact the system administrator!")
                 answer = "Q"
     return
+"""
